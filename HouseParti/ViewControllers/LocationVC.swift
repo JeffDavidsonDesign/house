@@ -27,24 +27,18 @@ class LocationVC: NewPostBaseVC ,UITextFieldDelegate,GetMapLocationProtocol{
     }
     //Mark:UIButtonAction
     @IBAction func nextAction(_ sender: Any) {
-        
-        if self.txtUnit?.text == "" || self.txtStreet?.text == "" || self.txtZipCode?.text == "",self.txtCity?.text == "" {
+        if self.txtCity?.text == "" {
             showAlertWithMesssage(message: NSLocalizedString("Please fill all required informations.", comment: ""), VC: self)
             return
         }
-    
         else {
-            let parameters:[String: Any] = ["address": self.txtStreet.text ?? "",
-                                            "zipcode":self.txtZipCode?.text ?? "",
-                                            "city": self.txtCity?.text ?? ""
-                                           // "music": 1,
-//                                            "food_drink":"",
-//                                            "preferred_guest":"","guest_limit":"","ticket_price":"",
-//                                            "start_time": "2018-08-27 12:00:00",
-//                                            "end_time" : "2018-08-27 12:00:00",
-//                                            "hosted_by" : 2,
-//                                            "age_min" : 20,
-//                                            "age_max" : 25
+            let parameters:[String: Any] = ["address": " ",
+                                            "zipcode": " ",
+                                            "city": self.txtCity?.text ?? "",
+                                            "guest_limit":" ",
+                                            "preferred_guest":" ",
+                                            "hosted_by":"2"
+
                                             ]
             let cont = self.storyboard?.instantiateViewController(withIdentifier: "InfoVC") as! InfoVC
           //  self.viewDetail.addSubview((cont.view)!)
@@ -68,19 +62,20 @@ class LocationVC: NewPostBaseVC ,UITextFieldDelegate,GetMapLocationProtocol{
     //Pragma Mark - TextField Delegate -
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        var unit: String = self.txtUnit.text!
-        var street: String = txtStreet.text!
-        var zipCode: String = txtZipCode.text!
-       
-        if textField == self.txtUnit {
-            unit = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        } else if textField == self.txtStreet {
-            street = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        }else if textField == self.txtZipCode {
-            zipCode = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        //var unit: String = self.txtUnit.text!
+       // var street: String = txtStreet.text!
+       // var zipCode: String = txtZipCode.text!
+         var cityStr: String = txtCity.text!
+
+//        if textField == self.txtUnit {
+//            unit = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+//        } else if textField == self.txtStreet {
+//            street = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+//        }
+        if textField == self.txtCity {
+            cityStr = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         }
-        
-        if unit != "" && street != "" && street != "" && zipCode != ""  {
+        if cityStr != "" {
             self.btnNext.isEnabled = true
             self.btnNext.alpha = 1.0
         }
@@ -93,7 +88,7 @@ class LocationVC: NewPostBaseVC ,UITextFieldDelegate,GetMapLocationProtocol{
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        if txtUnit.text != "" && txtStreet.text != "" && txtZipCode.text != "" && txtCity.text != ""  {
+        if txtCity.text != ""  {
             self.btnNext.isEnabled = true
             self.btnNext.alpha = 1.0
         } else {
@@ -117,5 +112,14 @@ class LocationVC: NewPostBaseVC ,UITextFieldDelegate,GetMapLocationProtocol{
     {
         print(selectedLocation)
         self.txtCity.text = selectedLocation
+        if self.txtCity.text != "" {
+            self.btnNext.isEnabled = true
+            self.btnNext.alpha = 1.0
+        }
+        else {
+            self.btnNext.isEnabled = false
+            self.btnNext.alpha = 0.6
+        }
+        
     }
 }

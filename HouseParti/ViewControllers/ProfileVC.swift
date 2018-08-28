@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class ProfileVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -16,32 +16,26 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var leftViewConstraint: NSLayoutConstraint!
     
     var tableListType = "Hosting"
-    
+    var statusValue : GetStatus?
+    var partyHost:[HouseMusic] = []
+    var partyAttend:[HouseMusic] = []
+    var user_Info:UserInfo?
+    var userDetail:userData?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-         self.navigationItem.title = "HouseParti"
-         self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+        self.navigationItem.title = "HouseParti"
+        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         self.profileImageView.layer.borderWidth = 1.0
         self.profileImageView.layer.borderColor = UIColor.black.cgColor
+        getMusicMethod()
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     @IBAction func actnBtnPartiesAttending(_ sender: UIButton) {
         btnPartiesAttending .setTitleColor(UIColor.lightGray, for: .normal)
         btnPartiesHosting .setTitleColor(UIColor.black, for: .normal)
@@ -52,16 +46,40 @@ class ProfileVC: UIViewController {
     
     @IBAction func actnBtnPartiesHosting(_ sender: UIButton) {
         btnPartiesHosting .setTitleColor(UIColor.lightGray, for: .normal)
-        
         btnPartiesAttending .setTitleColor(UIColor.black, for: .normal)
-        
         leftViewConstraint.constant = sender.frame.origin.x+24
         self.tableListType = "Hosting"
         self.tableView.reloadData()
     }
-    
+    func getMusicMethod() {
+        let parameters :[String:Any] = ["user_id":HPExtensions.shared.userId]
+        self.startAnimating()
+        ConnectionManager.shared.getMusic(methodName:getUserDetails, parameters: parameters, completionHandler: { (response, error) in
+            if((error == nil)) {
+                self.statusValue = response!
+                if self.statusValue?.status == 1 {
+                    self.user_Info  = (self.statusValue?.getUserInfo)!
+                    self.partyHost  = (self.user_Info?.parties_hosted)!
+                    self.partyAttend  = (self.user_Info?.parties_attending)!
+                    self.userDetail  = (self.user_Info?.user)!
+                    let imgUrl = self.userDetail?.profile_image
+                    let url = URL(string: imgUrl ?? "")
+                    let image = UIImage(named:"ic_placeholder")
+                    self.profileImageView.kf.setImage(with: url, placeholder: image)
+                    self.stopAnimating()
+                    self.tableView.reloadData()
+                }else{
+                    self.showAlertWithMesssage(message: (self.statusValue?.messege)!, VC: self);
+                    self.stopAnimating()
+                }
+            } else {
+                self.showAlertWithMesssage(message: (error?.localizedDescription)!, VC: self)
+                self.stopAnimating()
+                return
+            }
+        })
+    }
 }
-
 //Mark:-UITableView Delegate and Datasouce
 extension ProfileVC:UITableViewDelegate,UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -70,17 +88,31 @@ extension ProfileVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.tableListType == "Hosting"
         {
-           return 3
+           return self.partyHost.count
         }
         else
         {
-        return 2
+        return self.partyAttend.count
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HPPartyCell") as! HPPartyCell
         cell.selectionStyle = .none
+        if self.tableListType == "Hosting"
+        {
+            let getData = self.partyHost[indexPath.row]
+            cell.lblTitle.text = getData.partyTitle
+            cell.lblDate.text = getData.start_time
+            cell.lblPrice.text = "Free"
+            
+        }else{
+            let getData = self.partyAttend[indexPath.row]
+            cell.lblTitle.text = getData.partyTitle
+            cell.lblDate.text = getData.start_time
+            cell.lblPrice.text =  "$" + getData.ticket_price!
+        }
+        
         return cell
     }
       func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

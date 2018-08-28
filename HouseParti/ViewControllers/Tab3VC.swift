@@ -11,8 +11,10 @@ import UIKit
 class Tab3VC: UIViewController {
 
     @IBOutlet weak var tableViewFood: UITableView!
+    var switchGetValue :String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.switchGetValue = "0"
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,10 +38,18 @@ extension Tab3VC:UITableViewDelegate,UITableViewDataSource{
         headerView.backgroundColor = UIColor(red: 0.89, green: 0.91, blue: 0.96, alpha: 1)
    
         headerCell.titileLbl.text = "DRINKS";
-        
+         headerCell.switchDrinks.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
+
         headerView.addSubview(headerCell)
         
         return headerView
+    }
+    @objc func switchChanged(sender: UISwitch) {
+        if sender.isOn {
+            self.switchGetValue = "1"
+        }else{
+            self.switchGetValue = "0"
+        }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         

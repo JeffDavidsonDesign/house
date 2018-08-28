@@ -19,42 +19,37 @@ class Tab1VC: UIViewController {
     @IBOutlet weak var titileLbl: UILabel!
     @IBOutlet weak var txtView: UITextView!
     @IBOutlet weak var namePartyTxt: HPTextField!
-    var getParamter :[String:Any] = [:]
+    var infoDict :[String:Any] = [:]
+
     override func viewDidLoad() {
       super.viewDidLoad()
+     print(self.infoDict)
         
-        print(self)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     //Pragma Mark - TextField Delegate -
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        var email: String = namePartyTxt.text!
-//        if textField == txtFieldEmail {
-//            email = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-//        }
-//        if email != "" {
-//            self.btnLogin.isEnabled = true
-//            self.btnLogin.alpha = 1.0
+//        let length = count(namePartyTxt.text) - range.length + count(string)
+//        if length > 0 {
+//
 //        } else {
-//            self.btnLogin.isEnabled = false
-//            self.btnLogin.alpha = 0.6
-//        }
-        
-        return true
-    }
-    
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-//        if txtFieldEmail.text != "" && txtFieldPassword.text != "" && (txtFieldEmail.text?.isValidEmail)! {
-////            self.btnLogin.isEnabled = true
-////            self.btnLogin.alpha = 1.0
-//        } else {
-////            self.btnLogin.isEnabled = false
-////            self.btnLogin.alpha = 0.6
+//            submitButton.enabled = false
 //        }
         return true
     }
+//
+//    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+////        if txtFieldEmail.text != "" && txtFieldPassword.text != "" && (txtFieldEmail.text?.isValidEmail)! {
+//////            self.btnLogin.isEnabled = true
+//////            self.btnLogin.alpha = 1.0
+////        } else {
+//////            self.btnLogin.isEnabled = false
+//////            self.btnLogin.alpha = 0.6
+////        }
+//        return true
+//    }
 }
 /*
 //Mark:-UITableView Delegate and Datasouce
@@ -76,8 +71,7 @@ extension Tab1VC:UITableViewDelegate,UITableViewDataSource{
         switch (section) {
         case 0:
             headerCell.titileLbl.text = "TITLE";
-            
-            
+ 
             
         case 1:
             headerCell.titileLbl.text = "DESCRIPTION";

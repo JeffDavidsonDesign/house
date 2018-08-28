@@ -24,6 +24,7 @@ class LoginVC: AutenticationVC, UITextFieldDelegate {
     }
  
     @IBAction func actionLogin(_ sender: Any) {
+        
         if self.txtFieldEmail?.text == "" || self.txtFieldPassword?.text == "" {
             showAlertWithMesssage(message: NSLocalizedString("Please fill all required informations.", comment: ""), VC: self)
             return
@@ -59,6 +60,9 @@ class LoginVC: AutenticationVC, UITextFieldDelegate {
                 }
             })
         }
+ 
+      //  self.perform(#selector(self.showTabBar), with: nil, afterDelay: 0.5)
+
     }
     //Pragma Mark - TextField Delegate -
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

@@ -17,7 +17,6 @@ class NewPostBaseVC: UIViewController {
         let closeButton = UIBarButtonItem.init(title: "Close", style: .plain, target: self, action: #selector(closeButtonPressed))
         self.navigationItem.rightBarButtonItem = closeButton
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

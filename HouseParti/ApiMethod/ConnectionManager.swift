@@ -15,6 +15,7 @@ import AlamofireObjectMapper
 class ConnectionManager  {
 	static let shared = ConnectionManager()
 	typealias completion = ( _ result: Dictionary<String, Any>, _ error: Error?) -> ()
+    typealias CompletionTrening = ( _ result: GetStatus? , _ error: Error?) -> ()
 
 	func getRequest(methodName: String, parameters: Dictionary<String, Any>,onCompletion: @escaping completion) {
 		if NetworkManager.isConnectedToNetwork() {
@@ -128,6 +129,36 @@ class ConnectionManager  {
                  UIApplication.shared.keyWindow?.rootViewController?.stopAnimating()
         }
 	}
+    
+    
+    //Get Music list //
+    func getMusic(methodName: String, parameters: Dictionary<String, Any>,completionHandler: @escaping CompletionTrening) {
+        if NetworkManager.isConnectedToNetwork() {
+            let url = APP_BASE_URL + methodName
+            //  let headerDictionary: HTTPHeaders = ["Content-Type":"application/json","Accept":"application/json"]
+            let headerDictionary : [String : String] = [:]
+            Alamofire.request(url,method:.post,parameters: parameters,encoding:URLEncoding.default,headers: headerDictionary).validate().responseObject{ (response: DataResponse<GetStatus>) in
+                switch(response.result) {
+                case .success(_):
+                    var userDetail: GetStatus?
+                    userDetail =  response.result.value ?? nil
+                    completionHandler(userDetail ,nil)
+                    break
+                case .failure(_):
+                    completionHandler(nil ,response.result.error as NSError?)
+                    break
+                }
+            }
+        }else{
+            let alertController = UIAlertController(title: "Error", message: "OOPS Network is not Available", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+            UIApplication.shared.keyWindow?.rootViewController?.stopAnimating()
+            
+        }
+    }
+    
     
 }
 

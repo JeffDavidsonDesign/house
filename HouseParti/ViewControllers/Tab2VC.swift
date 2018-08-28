@@ -9,17 +9,42 @@
 import UIKit
 
 class Tab2VC: UIViewController {
+    
     @IBOutlet weak var tableView: UITableView!
     var musicArr = ["Indie","Hip-Hop","Jazz","Pop","Country","Salsa","Bachata"]
     var selectedCells:[Int] = []
-
+    var statusValue : GetStatus?
+    var musicData:[HouseMusic] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+          getMusicMethod()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+   func getMusicMethod() {
+    let parameters :[String:Any] = [:]
+    self.startAnimating()
+      ConnectionManager.shared.getMusic(methodName:getMusicList, parameters: parameters, completionHandler: { (response, error) in
+        if((error == nil)) {
+            self.statusValue = response!
+            if self.statusValue?.status == 1 {
+                print((self.statusValue?.music_info)!)
+                 self.musicData  = (self.statusValue?.music_info)!
+                self.stopAnimating()
+                self.tableView.reloadData()
+            }else{
+                self.showAlertWithMesssage(message: (self.statusValue?.messege)!, VC: self);
+                self.stopAnimating()
+            }
+        } else {
+            self.showAlertWithMesssage(message: (error?.localizedDescription)!, VC: self)
+            self.stopAnimating()
+            return
+        }
+    })
+    }
+
 }
 //Mark:-UITableView Delegate and Datasouce
 extension Tab2VC:UITableViewDelegate,UITableViewDataSource{
@@ -47,27 +72,53 @@ extension Tab2VC:UITableViewDelegate,UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return musicArr.count
+        return self.musicData.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HPMusicCell") as! HPMusicCell
-        cell.musicLbl.text = musicArr[indexPath.row]
-        cell.accessoryType = self.selectedCells.contains(indexPath.row) ? .checkmark : .none
-
+        let getData = self.musicData[indexPath.row]
+        cell.musicLbl.text = getData.musicName
+//        cell.accessoryType = self.selectedCells.contains(indexPath.row) ? .checkmark : .none
+        
+        if cell.isSelected
+        {
+            cell.isSelected = false
+            if cell.accessoryType == UITableViewCellAccessoryType.none
+            {
+                cell.accessoryType = UITableViewCellAccessoryType.checkmark
+            }
+            else
+            {
+                cell.accessoryType = UITableViewCellAccessoryType.none
+            }
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-        if self.selectedCells.contains(indexPath.row) {
-            self.selectedCells.remove(at: self.selectedCells.index(of: indexPath.row)!)
-//            self.selectedCells.removeAtIndex(self.selectedCells.indexOf(indexPath.row)!)
+        let getData = self.musicData[indexPath.row]
+        let getId = Int(getData.musicId!)
+        let cell = tableView.cellForRow(at: indexPath)
+        if cell!.isSelected
+        {
+            cell!.isSelected = false
+            if cell!.accessoryType == UITableViewCellAccessoryType.none
+            {
+                cell!.accessoryType = UITableViewCellAccessoryType.checkmark
+                self.selectedCells.append(getId!)
+                print(self.selectedCells)
+            }
+            else
+            {
+                cell!.accessoryType = UITableViewCellAccessoryType.none
+                self.selectedCells.remove(at: self.selectedCells.index(of:getId!)!)
+                print(self.selectedCells)
 
-        } else {
-            self.selectedCells.append(indexPath.row)
+            }
         }
-      self.tableView.reloadData()
+       self.tableView.reloadData()
     }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return 50
         
