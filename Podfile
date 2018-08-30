@@ -13,6 +13,10 @@ target 'HouseParti' do
     pod 'XLPagerTabStrip', '~> 8.0'
    pod 'IQKeyboardManagerSwift'
    pod 'AlamofireObjectMapper'
+   pod 'FacebookCore'
+   pod 'FacebookShare'
+   pod 'FBSDKLoginKit'
+
 
   target 'HousePartiTests' do
     inherit! :search_paths

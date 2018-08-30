@@ -14,7 +14,8 @@ class GetStatus: NSObject,Mappable {
     var messege : String?
     var music_info :[HouseMusic]?
     var getUserInfo : UserInfo?
-   
+    var party_info : [HouseMusic]?
+    
     override init() {
         super.init()
     }
@@ -26,5 +27,6 @@ class GetStatus: NSObject,Mappable {
         messege <- map["message"]
         music_info <- map["music_info"]
         getUserInfo <- map["user_info"]
+        party_info <- map ["party_info"]
   }
 }

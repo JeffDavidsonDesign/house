@@ -12,7 +12,6 @@ import ObjectMapper
 class HouseMusic: NSObject,Mappable {
     var musicId : String?
     var musicName : String?
-    
     var party_hostedId : String?
     var partyTitle : String?
     var partyDescription : String?
@@ -31,7 +30,12 @@ class HouseMusic: NSObject,Mappable {
     var created : String?
     var updated : String?
     var preferred_guest:String?
-    
+    var tickets_sold:String?
+    var total_tickets:String?
+    var lat:String?
+    var long:String?
+
+
     override init() {
         super.init()
     }
@@ -59,5 +63,10 @@ class HouseMusic: NSObject,Mappable {
         created <- map["created"]
         updated <- map["updated"]
         preferred_guest <- map["preferred_guest"]
+        tickets_sold <- map["tickets_sold"]
+        total_tickets <- map["tickets_sold"]
+        lat <- map["lat"]
+        long <- map["long"]
+
     }
 }

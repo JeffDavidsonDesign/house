@@ -9,13 +9,15 @@
 import UIKit
 
 class HomeVC: UIViewController,GetMapLocationProtocol {
-    @IBOutlet weak var leftViewConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var leftViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var btnUpcoming: UIButton!
     @IBOutlet weak var btnWeekend: UIButton!
     @IBOutlet weak var btnToday: UIButton!
     @IBOutlet weak var tableView: UITableView!
     var ListViewtype = "Today"
+    var statusValue : GetStatus?
+    var partList:[HouseMusic] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -23,12 +25,38 @@ class HomeVC: UIViewController,GetMapLocationProtocol {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.getPartyList()
+        
+    }
+    func getPartyList() {
+        let parameters :[String:Any] = ["music":"","filterby":"today","location":""]
+        self.startAnimating()
+        ConnectionManager.shared.getMusic(methodName:filterbyApi, parameters: parameters, completionHandler: { (response, error) in
+            if((error == nil)) {
+                self.statusValue = response!
+                if self.statusValue?.status == 1 {
+                    self.partList  = (self.statusValue?.party_info)!
+                    self.stopAnimating()
+                    self.tableView.reloadData()
+                }else{
+                    self.showAlertWithMesssage(message: (self.statusValue?.messege)!, VC: self);
+                    self.stopAnimating()
+                }
+            } else {
+                self.showAlertWithMesssage(message: (error?.localizedDescription)!, VC: self)
+                self.stopAnimating()
+                return
+            }
+        })
+    }
     @IBAction func actnBtnToday(_ sender: UIButton) {
        
         btnToday .setTitleColor(UIColor.black, for: .normal)
@@ -54,7 +82,7 @@ class HomeVC: UIViewController,GetMapLocationProtocol {
         btnWeekend .setTitleColor(UIColor.lightGray, for: .normal)
         
          leftViewConstraint.constant = sender.frame.origin.x
-        ListViewtype = "Upcoming"
+         ListViewtype = "Upcoming"
          self.tableView.reloadData()
     }
     
@@ -85,11 +113,11 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (self.ListViewtype == "Today") {
-            return 3
+            return  self.partList.count
         }
         else if (self.ListViewtype == "Upcoming" )
         {
-                return 2
+            return 2
         }
         else
         {
@@ -101,6 +129,23 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HPPartyCell") as! HPPartyCell
         cell.selectionStyle = .none
+      if (self.ListViewtype == "Today") {
+        
+         let getData = self.partList[indexPath.row]
+         cell.lblTitle.text = getData.partyTitle
+         cell.lblDate.text = (getData.start_time ?? "") + " " + (getData.partyAddress ?? "")
+        if getData.tickets_sold == ""{
+            cell.lblAttendingCount.text = ("0") + " " + "attending"
+        }else{
+            cell.lblAttendingCount.text = (getData.tickets_sold ?? "") + " " + "attending"
+        }
+        if getData.tickets_sold == ""{
+            cell.lblPrice.text = "Free"
+        }else{
+            cell.lblPrice.text =  "$" + " " + (getData.ticket_price ?? "")
+        }
+      }
+     
         return cell
     }
       func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

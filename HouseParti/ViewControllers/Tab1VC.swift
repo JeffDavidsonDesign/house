@@ -20,7 +20,6 @@ class Tab1VC: UIViewController {
     @IBOutlet weak var txtView: UITextView!
     @IBOutlet weak var namePartyTxt: HPTextField!
     var infoDict :[String:Any] = [:]
-
     override func viewDidLoad() {
       super.viewDidLoad()
      print(self.infoDict)

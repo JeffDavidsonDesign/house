@@ -31,13 +31,8 @@ protocol  GetMapLocationProtocol {
     private var mapChangedFromUserInteraction = false
     var getlat = Double()
     var getlong =  Double()
-    var Street = String()
-    var pincode = String()
-    var country = String()
-    
+
     var getUserpickLocation = "True"
-    
-    var City = String()
     
     var getAllLocation = String()
     
@@ -49,12 +44,9 @@ protocol  GetMapLocationProtocol {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
-      
         self.locationManager.startUpdatingLocation()
-        self.navigationItem.rightBarButtonItem = nil
         mapV.delegate = self
-       
-       self.InterfaceDesign()
+        self.InterfaceDesign()
        
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -101,64 +93,62 @@ protocol  GetMapLocationProtocol {
                 if (response != nil)
                 {     print("response id +++++++++++++= ",response ?? String())
                     
-//                    let coordinate1 = response?.mapItems[0].placemark.coordinate
-//
-//                    let getLat1 = response?.mapItems[0].placemark.coordinate.latitude
-//                    print(getLat1 ?? String())
-//                    let longLat1 = response?.mapItems[0].placemark.coordinate.longitude
-//                    print(longLat1 ?? String())
-//                    let span = MKCoordinateSpanMake(0.01, 0.01)
-//                    let region = MKCoordinateRegion(center: coordinate1! , span: span)
-//                    let geoCoder = CLGeocoder()
-//                    let location = CLLocation(latitude:getLat1!, longitude:longLat1!)
-//
-//                    geoCoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
-//                        guard let addressDict = placemarks?[0].addressDictionary
-//
-//                            else {
-//
-//                                return
-//                        }
-//
-//                        addressDict.forEach {
-//                            print("addressDict",$0)
-//
-//                        }
-//
-//                        if let formattedAddress = addressDict["FormattedAddressLines"] as? [String] {
-//                            print(formattedAddress.joined(separator: ", "))
-//                        }
-//
-//                        if let locationName = addressDict["Name"] as? String {
-//                            print("locationName",locationName)
-//                        }
-//                        if let street = addressDict["Thoroughfare"] as? String {
-//                            print("street",street)
-//                            self.Street = street
-//                        }
-//                        if let city = addressDict["City"] as? String {
-//                            print("City",city)
-//                            self.City = city
-//                        }
-//                        if let zip = addressDict["ZIP"] as? String {
-//                            print("zip",zip)
-//                            self.pincode = zip
-//
-//                        }
-//                        if let country = addressDict["Country"] as? String {
-//                            print("country",country)
-//                            self.country = country
-//                        }
-//                        let FirstString =  self.City + " ," + self.Street
-//                        let SecondString =  self.pincode + " ," + self.country
-//                        let thirdString = FirstString + "," + SecondString
-//                        self.getAllLocation = thirdString
-//
-//                        self.getlocation.text = self.getAllLocation
-//
-//
-//
-//                    })
+                    let coordinate1 = response?.mapItems[0].placemark.coordinate
+
+                    let getLat1 = response?.mapItems[0].placemark.coordinate.latitude
+                    print(getLat1 ?? String())
+                    let longLat1 = response?.mapItems[0].placemark.coordinate.longitude
+                    print(longLat1 ?? String())
+                    let span = MKCoordinateSpanMake(0.01, 0.01)
+                    let region = MKCoordinateRegion(center: coordinate1! , span: span)
+                    let geoCoder = CLGeocoder()
+                    let location = CLLocation(latitude:getLat1!, longitude:longLat1!)
+
+                    geoCoder.reverseGeocodeLocation(location, completionHandler: { placemarks, error in
+                        guard let addressDict = placemarks?[0].addressDictionary
+
+                            else {
+
+                                return
+                        }
+
+                        addressDict.forEach {
+                            print("addressDict",$0)
+
+                        }
+
+                        if let formattedAddress = addressDict["FormattedAddressLines"] as? [String] {
+                            print(formattedAddress.joined(separator: ", "))
+                        }
+
+                        if let locationName = addressDict["Name"] as? String {
+                            print("locationName",locationName)
+                            self.getAllLocation = locationName
+                        }
+                        if let street = addressDict["Thoroughfare"] as? String {
+                            print("street",street)
+                            
+                            self.getAllLocation = self.getAllLocation + "," + street
+                        }
+                        if let city = addressDict["City"] as? String {
+                            
+                            self.getAllLocation = self.getAllLocation + "," + city
+                        }
+                        if let zip = addressDict["ZIP"] as? String {
+                            print("zip",zip)
+                            
+                            self.getAllLocation = self.getAllLocation + "," + zip
+                        }
+                        if let country = addressDict["Country"] as? String {
+                            
+                            self.getAllLocation = self.getAllLocation + "," + country
+                        }
+
+                        self.getlocation.text = completion.title
+
+
+
+                    })
                     
                     self.searchBarCity.text = completion.title
                    
@@ -166,10 +156,9 @@ protocol  GetMapLocationProtocol {
                     self.tableViewSearch.isHidden = true
                     
                    self.searchBarCity.resignFirstResponder()
-                    self.delegate?.GetUserLocation(selectedLocation: completion.title)
-                    self.navigationController?.popViewController(animated: true)
-                  //  self.mapV.setRegion(region, animated: true)
-                  //  self.locationManager.stopUpdatingLocation()
+                
+                    self.mapV.setRegion(region, animated: true)
+                    self.locationManager.stopUpdatingLocation()
                 }
                 
         }
@@ -215,34 +204,28 @@ protocol  GetMapLocationProtocol {
                     
                 }
                 
-                if let formattedAddress = addressDict["FormattedAddressLines"] as? [String] {
-                    print(formattedAddress.joined(separator: ", "))
-                }
-                
                 if let locationName = addressDict["Name"] as? String {
                     print("locationName",locationName)
+                    self.getAllLocation = locationName
                 }
                 if let street = addressDict["Thoroughfare"] as? String {
                     print("street",street)
-                    self.Street = street
+                    
+                    self.getAllLocation = self.getAllLocation + "," + street
                 }
                 if let city = addressDict["City"] as? String {
-                    print("City",city)
-                    self.City = city
+                    
+                    self.getAllLocation = self.getAllLocation + "," + city
                 }
                 if let zip = addressDict["ZIP"] as? String {
                     print("zip",zip)
-                    self.pincode = zip
                     
+                    self.getAllLocation = self.getAllLocation + "," + zip
                 }
                 if let country = addressDict["Country"] as? String {
-                    print("country",country)
-                    self.country = country
+                    
+                    self.getAllLocation = self.getAllLocation + "," + country
                 }
-                let FirstString =  self.City + " ," + self.Street
-                let SecondString =  self.pincode + " ," + self.country
-                let thirdString = FirstString + "," + SecondString
-                self.getAllLocation = thirdString
                 
                 self.searchBarCity.text = self.getAllLocation
                 self.getlocation.text = self.getAllLocation
@@ -256,7 +239,7 @@ protocol  GetMapLocationProtocol {
         
            
             }
-        // self.GetAddressFromMap()
+    
     
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
@@ -265,6 +248,7 @@ protocol  GetMapLocationProtocol {
     }
     @IBAction func showCurrentLoc_btn(_ sender: Any) {
         mapV.showsUserLocation = true
+        
     }
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
    
@@ -297,7 +281,6 @@ protocol  GetMapLocationProtocol {
                 
                 addressDict.forEach {
                     print("addressDict",$0)
-                   
                 }
                 
                 if let formattedAddress = addressDict["FormattedAddressLines"] as? [String] {
@@ -306,31 +289,29 @@ protocol  GetMapLocationProtocol {
                 
                 if let locationName = addressDict["Name"] as? String {
                     print("locationName",locationName)
+                     self.getAllLocation = locationName
                 }
                 if let street = addressDict["Thoroughfare"] as? String {
                     print("street",street)
-                    self.Street = street
+                    
+                    self.getAllLocation = self.getAllLocation + "," + street
                 }
                 if let city = addressDict["City"] as? String {
-                    print("City",city)
-                    self.City = city
+                  
+                     self.getAllLocation = self.getAllLocation + "," + city
                 }
                 if let zip = addressDict["ZIP"] as? String {
                     print("zip",zip)
-                    self.pincode = zip
-                    
+                   
+                       self.getAllLocation = self.getAllLocation + "," + zip
                 }
                 if let country = addressDict["Country"] as? String {
-                    print("country",country)
-                    self.country = country
+                   
+                    self.getAllLocation = self.getAllLocation + "," + country
                 }
-                  let FirstString =  self.City + " ," + self.Street
-                  let SecondString =  self.pincode + " ," + self.country
-                  let thirdString = FirstString + "," + SecondString
-                self.getAllLocation = thirdString
-            
+    
                 self.getlocation.text = self.getAllLocation
-                
+                self.searchBarCity.text = self.getAllLocation
                 self.locationManager.stopUpdatingLocation()
                 
             })

@@ -45,6 +45,7 @@ class TimeVC:NewPostBaseVC {
         let dateString = dateFormatter.string(from: date)
         self.startDateLbl.text = dateString
         self.endDateLbl.text = dateString
+        self.datePicker.backgroundColor = UIColor.white
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

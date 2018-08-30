@@ -32,12 +32,11 @@ class LocationVC: NewPostBaseVC ,UITextFieldDelegate,GetMapLocationProtocol{
             return
         }
         else {
-            let parameters:[String: Any] = ["address": " ",
-                                            "zipcode": " ",
-                                            "city": self.txtCity?.text ?? "",
-                                            "guest_limit":" ",
-                                            "preferred_guest":" ",
-                                            "hosted_by":"2"
+            let parameters:[String: Any] = ["address": self.txtCity?.text ?? "",
+                                            "guest_limit":"1",
+                                            "hosted_by":HPExtensions.shared.userId,
+                                            "lat":"1",
+                                            "long":"2"
 
                                             ]
             let cont = self.storyboard?.instantiateViewController(withIdentifier: "InfoVC") as! InfoVC

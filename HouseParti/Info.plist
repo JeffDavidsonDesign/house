@@ -24,7 +24,33 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
+        
+        <key>CFBundleURLTypes</key>
+        <array>
+            <dict>
+                <key>CFBundleURLSchemes</key>
+                <array>
+                    <string>fb1019737514861565</string>
+                </array>
+            </dict>
+        </array>
+        <key>FacebookAppID</key>
+        <string>1019737514861565</string>
+        <key>FacebookDisplayName</key>
+        <string>HouseParty</string>
+        
+        <key>LSApplicationQueriesSchemes</key>
+        <array>
+            <string>fbapi</string>
+            <string>fb-messenger-share-api</string>
+            <string>fbauth2</string>
+            <string>fbshareextension</string>
+        </array>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Take Photo</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Select Photo</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>WhitneyHTF-Medium.ttf</string>
