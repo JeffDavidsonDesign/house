@@ -21,7 +21,10 @@ class HomeVC: UIViewController,GetMapLocationProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.navigationItem.title = "HouseParti"
+        
+        let imageView = UIImageView(image:#imageLiteral(resourceName: "navlogo"))
+        self.navigationItem.titleView = imageView
+        //self.navigationItem.title = "HouseParti"
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
@@ -37,7 +40,7 @@ class HomeVC: UIViewController,GetMapLocationProtocol {
         
     }
     func getPartyList() {
-        let parameters :[String:Any] = ["music":"","filterby":"today","location":""]
+        let parameters :[String:Any] = ["music":"2","filterby":"today","location":"chan"]
         self.startAnimating()
         ConnectionManager.shared.getMusic(methodName:filterbyApi, parameters: parameters, completionHandler: { (response, error) in
             if((error == nil)) {

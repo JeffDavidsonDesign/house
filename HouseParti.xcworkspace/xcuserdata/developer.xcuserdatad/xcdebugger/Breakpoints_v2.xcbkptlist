@@ -2,4 +2,164 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HouseParti/ViewControllers/HomeVC.swift"
+            timestampString = "557499663.598866"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HouseParti/ViewControllers/HomeVC.swift"
+            timestampString = "557499663.5989569"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HouseParti/ApiMethod/ConnectionManager.swift"
+            timestampString = "557490928.829939"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "getMusic(methodName:parameters:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HouseParti/ApiMethod/ConnectionManager.swift"
+            timestampString = "557490928.830005"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "getMusic(methodName:parameters:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HouseParti/ViewControllers/InitialVC.swift"
+            timestampString = "557670791.459536"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "actnBtnLogin(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HouseParti/ViewControllers/SignUpStep1VC.swift"
+            timestampString = "557670791.459656"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HouseParti.SignUpStep1VC.txtFieldPassword.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;HouseParti.HPTextField&gt;"
+                  moduleName = "HouseParti"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Desktop/house/HouseParti/ViewControllers/SignUpStep1VC.swift"
+                  timestampString = "557670792.246683"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "79">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HouseParti.SignUpStep1VC.txtFieldPassword.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;HouseParti.HPTextField&gt;"
+                  moduleName = "HouseParti"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Desktop/house/HouseParti/ViewControllers/SignUpStep1VC.swift"
+                  timestampString = "557670792.249157"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "90">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HouseParti.SignUpStep1VC.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; HouseParti.SignUpStep1VC"
+                  moduleName = "HouseParti"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Desktop/house/HouseParti/ViewControllers/SignUpStep1VC.swift"
+                  timestampString = "557670792.252481"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "553">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HouseParti.SignUpStep1VC.init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;HouseParti.SignUpStep1VC&gt;"
+                  moduleName = "HouseParti"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Desktop/house/HouseParti/ViewControllers/SignUpStep1VC.swift"
+                  timestampString = "557670792.256031"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "430">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

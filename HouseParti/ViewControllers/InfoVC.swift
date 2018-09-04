@@ -67,7 +67,7 @@ class InfoVC:NewPostBaseVC, UIPageViewControllerDataSource, UIPageViewController
     @IBAction func nextAction(_ sender: Any) {
         let cont = self.storyboard?.instantiateViewController(withIdentifier: "TimeVC")as! TimeVC
         let getStr = self.json(from: tab2VC.selectedCells)
-        print(getStr)
+
         self.getParamter.updateValue(tab1VC.namePartyTxt.text ?? "", forKey: "title")
         self.getParamter.updateValue(tab1VC.txtView.text ?? "", forKey: "description")
         self.getParamter.updateValue(getStr ?? "", forKey: "music")
@@ -106,7 +106,7 @@ class InfoVC:NewPostBaseVC, UIPageViewControllerDataSource, UIPageViewController
             svScroll.delegate = self
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-            self.pageController.view.frame = CGRect(x: 0, y: 64, width: self.view.frame.size.width, height: self.view.frame.size.height-164)
+            self.pageController.view.frame = CGRect(x: 0, y: 45, width: self.view.frame.size.width, height: self.view.frame.size.height-145)
         }
         let homeStoryboard = UIStoryboard(name: "Main", bundle: nil)
         tab1VC = homeStoryboard.instantiateViewController(withIdentifier: "Tab1VC") as! Tab1VC

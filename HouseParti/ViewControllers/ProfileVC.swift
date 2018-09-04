@@ -31,7 +31,9 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationItem.title = "HouseParti"
+        let imageView = UIImageView(image:#imageLiteral(resourceName: "navlogo"))
+        self.navigationItem.titleView = imageView
+       // self.navigationItem.title = "HouseParti"
         self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         self.profileImageView.layer.borderWidth = 1.0
         self.profileImageView.layer.borderColor = UIColor.black.cgColor

@@ -51,13 +51,13 @@ extension Tab2VC:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        return 50
+        return 44
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let headerView = UIView(frame: CGRect(x: 0, y:10, width: tableView.frame.size.width, height: 30))
+        let headerView = UIView()
         let menuHeaderLabel = UILabel(frame: CGRect(x: 22, y: 10, width: tableView.frame.size.width, height: 30))
-        menuHeaderLabel.font = UIFont(name:"WhitneyHTF-SemiBold", size: 17.0)
+        menuHeaderLabel.font = UIFont(name:"WhitneyHTF-SemiBold", size: 15.0)
         
         menuHeaderLabel.text = "MUSIC"
         menuHeaderLabel.textColor  = UIColor(red: 0.26, green: 0.26, blue: 0.27, alpha: 1)

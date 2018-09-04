@@ -10,6 +10,8 @@ import UIKit
 
 class PartyDetailVC: UIViewController {
 
+    @IBOutlet weak var viewFood: UIView!
+    @IBOutlet weak var viewMusic: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
        self.title = "Details"
@@ -20,4 +22,12 @@ class PartyDetailVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func actnBtnfood(_ sender: Any) {
+        viewMusic.isHidden = true
+        viewFood.isHidden = false
+    }
+    @IBAction func actnBtnMusic(_ sender: Any) {
+        viewMusic.isHidden = false
+        viewFood.isHidden = true
+    }
 }

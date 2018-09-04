@@ -14,6 +14,7 @@ class NewPostBaseVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.navigationItem.title = "Host a party"
+        
         let closeButton = UIBarButtonItem.init(title: "Close", style: .plain, target: self, action: #selector(closeButtonPressed))
         self.navigationItem.rightBarButtonItem = closeButton
     }

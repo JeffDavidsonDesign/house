@@ -134,11 +134,7 @@ protocol  GetMapLocationProtocol {
                             
                             self.getAllLocation = self.getAllLocation + "," + city
                         }
-                        if let zip = addressDict["ZIP"] as? String {
-                            print("zip",zip)
-                            
-                            self.getAllLocation = self.getAllLocation + "," + zip
-                        }
+                       
                         if let country = addressDict["Country"] as? String {
                             
                             self.getAllLocation = self.getAllLocation + "," + country
@@ -217,11 +213,7 @@ protocol  GetMapLocationProtocol {
                     
                     self.getAllLocation = self.getAllLocation + "," + city
                 }
-                if let zip = addressDict["ZIP"] as? String {
-                    print("zip",zip)
-                    
-                    self.getAllLocation = self.getAllLocation + "," + zip
-                }
+                
                 if let country = addressDict["Country"] as? String {
                     
                     self.getAllLocation = self.getAllLocation + "," + country
@@ -300,11 +292,7 @@ protocol  GetMapLocationProtocol {
                   
                      self.getAllLocation = self.getAllLocation + "," + city
                 }
-                if let zip = addressDict["ZIP"] as? String {
-                    print("zip",zip)
-                   
-                       self.getAllLocation = self.getAllLocation + "," + zip
-                }
+                
                 if let country = addressDict["Country"] as? String {
                    
                     self.getAllLocation = self.getAllLocation + "," + country
@@ -321,7 +309,8 @@ protocol  GetMapLocationProtocol {
     }
     
     @IBAction func actnBtnDone(_ sender: Any) {
-        self.delegate?.GetUserLocation(selectedLocation: self.getlocation.text!)
+        let location = self.getlocation.text ?? ""
+        self.delegate?.GetUserLocation(selectedLocation: location)
         self.navigationController?.popViewController(animated: true)
     }
  }

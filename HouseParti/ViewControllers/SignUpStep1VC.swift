@@ -10,6 +10,8 @@ import UIKit
 
 class SignUpStep1VC: AutenticationVC, UITextFieldDelegate {
 
+    @IBOutlet weak var txtFldGender: HPTextField!
+    @IBOutlet weak var txtFldAge: HPTextField!
     @IBOutlet weak var btnNext: UIButton!
     @IBOutlet weak var txtFieldPassword: HPTextField!
     @IBOutlet weak var txtFieldEmail: HPTextField!
@@ -22,6 +24,8 @@ class SignUpStep1VC: AutenticationVC, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    @IBAction func actnBtnSignup(_ sender: Any) { self.perform(#selector(self.showTabBar), with: nil, afterDelay: 0.5)
     }
     
     @IBAction func actionNext(_ sender: Any) {

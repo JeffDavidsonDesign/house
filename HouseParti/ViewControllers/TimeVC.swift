@@ -40,7 +40,8 @@ class TimeVC:NewPostBaseVC {
         print(self.infoParameter)
         selectCheck = true
         let dateFormatter : DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MMM-dd HH:mm:ss"
+        dateFormatter.dateStyle = DateFormatter.Style.short
+        dateFormatter.timeStyle = DateFormatter.Style.short
         let date = Date()
         let dateString = dateFormatter.string(from: date)
         self.startDateLbl.text = dateString
