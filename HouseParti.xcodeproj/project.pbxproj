@@ -12,6 +12,10 @@
 		038D681B213513B600BE1BD9 /* GetStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038D681A213513B600BE1BD9 /* GetStatus.swift */; };
 		038D681D2135382C00BE1BD9 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038D681C2135382C00BE1BD9 /* UserInfo.swift */; };
 		041408B424AFA34479CFD8D4 /* Pods_HousePartiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5DF45F3ACAC5113BE880D49 /* Pods_HousePartiUITests.framework */; };
+		8B07CCD92142B7BB002CC56F /* pt-sans.regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B07CCD82142B7BB002CC56F /* pt-sans.regular.ttf */; };
+		8B07CCDB2142B7C4002CC56F /* pt-sans.narrow.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B07CCDA2142B7C4002CC56F /* pt-sans.narrow.ttf */; };
+		8B07CCDD2142B7CC002CC56F /* pt-sans.narrow-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B07CCDC2142B7CC002CC56F /* pt-sans.narrow-bold.ttf */; };
+		8B07CCDF2142B7D6002CC56F /* pt-sans.italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B07CCDE2142B7D6002CC56F /* pt-sans.italic.ttf */; };
 		8B0FDDDC213153AA00B9EB63 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0FDDDB213153AA00B9EB63 /* ResetPasswordVC.swift */; };
 		8B18830821259CC9008E2F27 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B18830721259CC9008E2F27 /* InfoVC.swift */; };
 		8B18830B21259E9B008E2F27 /* HPInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B18830A21259E9B008E2F27 /* HPInfoCell.swift */; };
@@ -19,8 +23,6 @@
 		8B1883112125BE6B008E2F27 /* TimeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1883102125BE6B008E2F27 /* TimeVC.swift */; };
 		8B22DE5D2126EBAD008DE086 /* Tab2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B22DE5A2126EBAC008DE086 /* Tab2VC.swift */; };
 		8B22DE5E2126EBAD008DE086 /* Tab1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B22DE5B2126EBAC008DE086 /* Tab1VC.swift */; };
-		8B22DE5F2126EBAD008DE086 /* Tab3VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B22DE5C2126EBAC008DE086 /* Tab3VC.swift */; };
-		8B22DE612126F0E6008DE086 /* Tab4VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B22DE602126F0E6008DE086 /* Tab4VC.swift */; };
 		8B22DE632126F109008DE086 /* Tab5VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B22DE622126F109008DE086 /* Tab5VC.swift */; };
 		8B22DE6521270F81008DE086 /* HPMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B22DE6421270F81008DE086 /* HPMusicCell.swift */; };
 		8B42C65D2122FEFC0057C982 /* HPPartyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42C65C2122FEFC0057C982 /* HPPartyCell.swift */; };
@@ -48,7 +50,6 @@
 		8BE4D19F2121A0C300928908 /* WhitneyHTF-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BE4D19D2121A0C300928908 /* WhitneyHTF-SemiBold.ttf */; };
 		8BE4D1A12121A60B00928908 /* HPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE4D1A02121A60B00928908 /* HPTextField.swift */; };
 		8BE4D1A32121A75300928908 /* SignUpStep1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE4D1A22121A75300928908 /* SignUpStep1VC.swift */; };
-		8BE4D1A52121A76700928908 /* SignUpStep2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE4D1A42121A76700928908 /* SignUpStep2VC.swift */; };
 		8BE4D1A72121A81B00928908 /* AutenticationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE4D1A62121A81B00928908 /* AutenticationVC.swift */; };
 		8BE4D1A92121B15300928908 /* WhitneyHTF-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BE4D1A82121B15200928908 /* WhitneyHTF-Bold.ttf */; };
 		8BE4D1AB2121B69B00928908 /* InitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE4D1AA2121B69B00928908 /* InitialVC.swift */; };
@@ -83,6 +84,10 @@
 		3C8DFE158E0811264E1FE660 /* Pods_HousePartiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HousePartiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CD268CB4AC6E59E369BFE33 /* Pods-HousePartiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HousePartiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HousePartiTests/Pods-HousePartiTests.release.xcconfig"; sourceTree = "<group>"; };
 		6F430B89A1F08A819DA43868 /* Pods-HouseParti.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HouseParti.release.xcconfig"; path = "Pods/Target Support Files/Pods-HouseParti/Pods-HouseParti.release.xcconfig"; sourceTree = "<group>"; };
+		8B07CCD82142B7BB002CC56F /* pt-sans.regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pt-sans.regular.ttf"; sourceTree = "<group>"; };
+		8B07CCDA2142B7C4002CC56F /* pt-sans.narrow.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pt-sans.narrow.ttf"; sourceTree = "<group>"; };
+		8B07CCDC2142B7CC002CC56F /* pt-sans.narrow-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pt-sans.narrow-bold.ttf"; sourceTree = "<group>"; };
+		8B07CCDE2142B7D6002CC56F /* pt-sans.italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pt-sans.italic.ttf"; sourceTree = "<group>"; };
 		8B0FDDDB213153AA00B9EB63 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
 		8B18830721259CC9008E2F27 /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
 		8B18830A21259E9B008E2F27 /* HPInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPInfoCell.swift; sourceTree = "<group>"; };
@@ -90,8 +95,6 @@
 		8B1883102125BE6B008E2F27 /* TimeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeVC.swift; sourceTree = "<group>"; };
 		8B22DE5A2126EBAC008DE086 /* Tab2VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab2VC.swift; sourceTree = "<group>"; };
 		8B22DE5B2126EBAC008DE086 /* Tab1VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab1VC.swift; sourceTree = "<group>"; };
-		8B22DE5C2126EBAC008DE086 /* Tab3VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab3VC.swift; sourceTree = "<group>"; };
-		8B22DE602126F0E6008DE086 /* Tab4VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab4VC.swift; sourceTree = "<group>"; };
 		8B22DE622126F109008DE086 /* Tab5VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab5VC.swift; sourceTree = "<group>"; };
 		8B22DE6421270F81008DE086 /* HPMusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPMusicCell.swift; sourceTree = "<group>"; };
 		8B42C65C2122FEFC0057C982 /* HPPartyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPPartyCell.swift; sourceTree = "<group>"; };
@@ -124,7 +127,6 @@
 		8BE4D19D2121A0C300928908 /* WhitneyHTF-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WhitneyHTF-SemiBold.ttf"; sourceTree = "<group>"; };
 		8BE4D1A02121A60B00928908 /* HPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPTextField.swift; sourceTree = "<group>"; };
 		8BE4D1A22121A75300928908 /* SignUpStep1VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpStep1VC.swift; sourceTree = "<group>"; };
-		8BE4D1A42121A76700928908 /* SignUpStep2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpStep2VC.swift; sourceTree = "<group>"; };
 		8BE4D1A62121A81B00928908 /* AutenticationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutenticationVC.swift; sourceTree = "<group>"; };
 		8BE4D1A82121B15200928908 /* WhitneyHTF-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "WhitneyHTF-Bold.ttf"; sourceTree = "<group>"; };
 		8BE4D1AA2121B69B00928908 /* InitialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialVC.swift; sourceTree = "<group>"; };
@@ -259,13 +261,10 @@
 				8BE4D1AA2121B69B00928908 /* InitialVC.swift */,
 				8B22DE5B2126EBAC008DE086 /* Tab1VC.swift */,
 				8B22DE5A2126EBAC008DE086 /* Tab2VC.swift */,
-				8B22DE5C2126EBAC008DE086 /* Tab3VC.swift */,
-				8B22DE602126F0E6008DE086 /* Tab4VC.swift */,
 				8B22DE622126F109008DE086 /* Tab5VC.swift */,
 				8BE4D1A62121A81B00928908 /* AutenticationVC.swift */,
 				8BE4D19221217DE400928908 /* LoginVC.swift */,
 				8BE4D1A22121A75300928908 /* SignUpStep1VC.swift */,
-				8BE4D1A42121A76700928908 /* SignUpStep2VC.swift */,
 				8B51E8F62122F82C009C49BE /* AddPostVC.swift */,
 				8B51E8F02122F19F009C49BE /* LocationVC.swift */,
 				8B51E8F22122F75E009C49BE /* HomeVC.swift */,
@@ -315,6 +314,10 @@
 				8BE4D19C2121A0C300928908 /* WhitneyHTF-Medium.ttf */,
 				8BE4D19D2121A0C300928908 /* WhitneyHTF-SemiBold.ttf */,
 				8BE4D1A82121B15200928908 /* WhitneyHTF-Bold.ttf */,
+				8B07CCD82142B7BB002CC56F /* pt-sans.regular.ttf */,
+				8B07CCDA2142B7C4002CC56F /* pt-sans.narrow.ttf */,
+				8B07CCDE2142B7D6002CC56F /* pt-sans.italic.ttf */,
+				8B07CCDC2142B7CC002CC56F /* pt-sans.narrow-bold.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -450,8 +453,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B07CCDD2142B7CC002CC56F /* pt-sans.narrow-bold.ttf in Resources */,
 				8BE4D19F2121A0C300928908 /* WhitneyHTF-SemiBold.ttf in Resources */,
+				8B07CCDF2142B7D6002CC56F /* pt-sans.italic.ttf in Resources */,
 				8BE4D16B21217D5E00928908 /* LaunchScreen.storyboard in Resources */,
+				8B07CCD92142B7BB002CC56F /* pt-sans.regular.ttf in Resources */,
+				8B07CCDB2142B7C4002CC56F /* pt-sans.narrow.ttf in Resources */,
 				8BE4D19E2121A0C300928908 /* WhitneyHTF-Medium.ttf in Resources */,
 				8BE4D16821217D5D00928908 /* Assets.xcassets in Resources */,
 				8BE4D16621217D3C00928908 /* Main.storyboard in Resources */,
@@ -596,15 +603,12 @@
 				8B18830B21259E9B008E2F27 /* HPInfoCell.swift in Sources */,
 				8BE4D1972121821E00928908 /* Config.swift in Sources */,
 				038D681D2135382C00BE1BD9 /* UserInfo.swift in Sources */,
-				8B22DE5F2126EBAD008DE086 /* Tab3VC.swift in Sources */,
 				8BCBF7432130257600E885D7 /* NetworkManager.swift in Sources */,
 				8B51E8F72122F82C009C49BE /* AddPostVC.swift in Sources */,
-				8BE4D1A52121A76700928908 /* SignUpStep2VC.swift in Sources */,
 				8BCBF7472130261000E885D7 /* ApiMethod.swift in Sources */,
 				8BE4D1AD2121C75E00928908 /* HPExtensions.swift in Sources */,
 				8B51E8F12122F1A0009C49BE /* LocationVC.swift in Sources */,
 				8B22DE5D2126EBAD008DE086 /* Tab2VC.swift in Sources */,
-				8B22DE612126F0E6008DE086 /* Tab4VC.swift in Sources */,
 				8BE4D16121217D3B00928908 /* AppDelegate.swift in Sources */,
 				8B22DE6521270F81008DE086 /* HPMusicCell.swift in Sources */,
 				8BE4D1AB2121B69B00928908 /* InitialVC.swift in Sources */,

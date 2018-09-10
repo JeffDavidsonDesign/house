@@ -35,8 +35,8 @@ class TimeVC:NewPostBaseVC {
         self.navigationItem.title = "Host a party"
         self.btnNext.isEnabled = false
         self.btnNext.alpha = 0.6
-        self.startLbl.isHidden = false
-        self.endLbl.isHidden = true
+       // self.startLbl.isHidden = false
+      //  self.endLbl.isHidden = true
         print(self.infoParameter)
         selectCheck = true
         let dateFormatter : DateFormatter = DateFormatter()
@@ -46,7 +46,11 @@ class TimeVC:NewPostBaseVC {
         let dateString = dateFormatter.string(from: date)
         self.startDateLbl.text = dateString
         self.endDateLbl.text = dateString
-        self.datePicker.backgroundColor = UIColor.white
+//        self.datePicker.backgroundColor = UIColor.init(red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
+        self.headerView.layer.borderWidth = 0.5
+        self.headerView.layer.borderColor = UIColor.red.cgColor
+
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -55,24 +59,24 @@ class TimeVC:NewPostBaseVC {
     //Mark:UIButton Action
     @IBAction func startTimeACtion(_ sender: UIButton) {
        // self.startTimeBtn.isSelected = true
-        self.endTimeBtn.titleLabel?.textColor = UIColor.gray
-        sender.titleLabel?.textColor = UIColor.black
-        self.startLbl.isHidden = false
-        self.endLbl.isHidden = true
+        self.endTimeBtn.titleLabel?.textColor = .black
+        sender.titleLabel?.textColor = .white
         selectCheck = true
+        self.endTimeBtn.backgroundColor = .clear
+        self.startTimeBtn.backgroundColor = .red
     }
     @IBAction func endTimeAction(_ sender: UIButton) {
-        //self.endTimeBtn.isSelected = true
-        sender.titleLabel?.textColor = UIColor.black
-        self.startTimeBtn.titleLabel?.textColor = UIColor.gray
-        self.startLbl.isHidden = true
-        self.endLbl.isHidden = false
+        sender.titleLabel?.textColor = UIColor.white
+        self.startTimeBtn.titleLabel?.textColor = UIColor.black
+        self.endTimeBtn.backgroundColor = .red
+        self.startTimeBtn.backgroundColor = .clear
         selectCheck = false
     }
     @IBAction func datePickerAction(_ sender: Any) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = DateFormatter.Style.short
-        dateFormatter.timeStyle = DateFormatter.Style.short
+        dateFormatter.dateFormat = "d MMM yyyy HH:mm:ss"
+      //  dateFormatter.dateStyle = DateFormatter.Style.short
+     //   dateFormatter.timeStyle = DateFormatter.Style.short
         let strDate = dateFormatter.string(from: datePicker.date)
         if selectCheck == true{
         self.startDateLbl.text = strDate
@@ -97,7 +101,11 @@ class TimeVC:NewPostBaseVC {
                     self.stopAnimating()
                     self.showAlertWithMesssage(message: response["message"] as! String, VC: self)
                     self.navigationController?.popViewController(animated: true)
-                    
+                    UserDefaults.standard.removeObject(forKey: "partyName")
+                    UserDefaults.standard.removeObject(forKey: "detial")
+                    UserDefaults.standard.removeObject(forKey: "music")
+                    UserDefaults.standard.removeObject(forKey: "ticket")
+
                 } else {
                     self.showAlertWithMesssage(message: response["message"] as! String, VC: self)
                     self.stopAnimating()
@@ -120,71 +128,3 @@ class TimeVC:NewPostBaseVC {
         
     }
 }
-/*
-//Mark:-UITableView Delegate and Datasouce
-extension TimeVC:UITableViewDelegate,UITableViewDataSource{
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 1
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if  selectCheck == true {
-            return startTime.count
-        }else{
-            return endTime.count
-
-        }
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HPInfoHeader") as! HPInfoHeader
-        cell.selectionStyle = .none
-        if selectCheck == true {
-         cell.titileLbl.text  = String(format:"July 25%d",indexPath.row+1)
-         cell.numberLbl.text  = startTime[indexPath.row]
-        }
-        else{
-            cell.titileLbl.text  = String(format:"July 25%d",indexPath.row+1)
-            cell.numberLbl.text  = endTime[indexPath.row]
-        }
-        return cell
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath as IndexPath)! as! HPInfoHeader
-        self.btnNext.isEnabled = true
-        self.btnNext.alpha = 1.0
-        cell.backgroundColor = UIColor.init(red: 255/255.0, green: 194/255.0, blue: 50/255.0, alpha: 1.0)
-        cell.titileLbl.textColor = UIColor.white
-        cell.numberLbl.textColor = UIColor.white
-         if selectCheck == true {
-            self.selectStartTimeStr = startTime[indexPath.row]
-            self.infoParameter.updateValue(self.selectStartTimeStr ?? "", forKey: "start_time")
-            print( self.infoParameter)
-        }
-         else{
-            self.selectEndTimeStr = endTime[indexPath.row]
-            self.infoParameter.updateValue(self.selectEndTimeStr ?? "", forKey: "end_time")
-            print( self.infoParameter)
-
-        }
-    }
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath as IndexPath)! as! HPInfoHeader
-        cell.backgroundColor = UIColor.white
-        cell.titileLbl.textColor = UIColor.black
-        cell.numberLbl.textColor = UIColor.black
-//        if  self.startTimeBtn.isSelected == true {
-//      //  self.selectStartTimeStr?.remove(at: indexPath.row)
-//        }else{
-//       // self.selectEndTimeStr?.remove(at: indexPath.row)
-//
-//        }
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return 50
-    }
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-}
-*/

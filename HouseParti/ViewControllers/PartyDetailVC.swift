@@ -21,7 +21,7 @@ class PartyDetailVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @IBAction func actnBtnfood(_ sender: Any) {
         viewMusic.isHidden = true
         viewFood.isHidden = false

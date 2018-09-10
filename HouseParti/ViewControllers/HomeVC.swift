@@ -18,16 +18,17 @@ class HomeVC: UIViewController,GetMapLocationProtocol {
     var ListViewtype = "Today"
     var statusValue : GetStatus?
     var partList:[HouseMusic] = []
+    
+    @IBOutlet weak var weekendView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        let imageView = UIImageView(image:#imageLiteral(resourceName: "navlogo"))
-        self.navigationItem.titleView = imageView
-        //self.navigationItem.title = "HouseParti"
+        self.navigationItem.title = "HouseParti"
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+        self.weekendView.layer.borderWidth = 0.5
+        self.weekendView.layer.borderColor = UIColor.red.cgColor
 
     }
     override func didReceiveMemoryWarning() {
@@ -37,7 +38,6 @@ class HomeVC: UIViewController,GetMapLocationProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.getPartyList()
-        
     }
     func getPartyList() {
         let parameters :[String:Any] = ["music":"2","filterby":"today","location":"chan"]
@@ -62,30 +62,39 @@ class HomeVC: UIViewController,GetMapLocationProtocol {
     }
     @IBAction func actnBtnToday(_ sender: UIButton) {
        
-        btnToday .setTitleColor(UIColor.black, for: .normal)
-        btnUpcoming .setTitleColor(UIColor.lightGray, for: .normal)
-        btnWeekend .setTitleColor(UIColor.lightGray, for: .normal)
+        btnToday .setTitleColor(UIColor.white, for: .normal)
+        btnUpcoming .setTitleColor(UIColor.black, for: .normal)
+        btnWeekend .setTitleColor(UIColor.black, for: .normal)
         leftViewConstraint.constant = sender.frame.origin.x
         ListViewtype = "Today"
+        btnToday.backgroundColor = .red
+        btnUpcoming.backgroundColor = .clear
+        btnWeekend.backgroundColor = .clear
+
         self.tableView.reloadData()
     }
     
     @IBAction func actnBtnWeekend(_ sender: UIButton) {
-        btnToday .setTitleColor(UIColor.lightGray, for: .normal)
-        btnUpcoming .setTitleColor(UIColor.lightGray, for: .normal)
-        btnWeekend .setTitleColor(UIColor.black, for: .normal)
+        btnToday .setTitleColor(UIColor.black, for: .normal)
+        btnUpcoming .setTitleColor(UIColor.black, for: .normal)
+        btnWeekend .setTitleColor(UIColor.white, for: .normal)
         leftViewConstraint.constant = sender.frame.origin.x
         ListViewtype = "Weekend"
+        btnToday.backgroundColor = .clear
+        btnUpcoming.backgroundColor = .clear
+        btnWeekend.backgroundColor = .red
          self.tableView.reloadData()
     }
     
     @IBAction func actnBtnUpcoming(_ sender: UIButton) {
-        btnToday .setTitleColor(UIColor.lightGray, for: .normal)
-        btnUpcoming .setTitleColor(UIColor.black, for: .normal)
-        btnWeekend .setTitleColor(UIColor.lightGray, for: .normal)
-        
-         leftViewConstraint.constant = sender.frame.origin.x
-         ListViewtype = "Upcoming"
+        btnToday .setTitleColor(UIColor.black, for: .normal)
+        btnUpcoming .setTitleColor(UIColor.white, for: .normal)
+        btnWeekend .setTitleColor(UIColor.black, for: .normal)
+        leftViewConstraint.constant = sender.frame.origin.x
+        ListViewtype = "Upcoming"
+        btnToday.backgroundColor = .clear
+        btnUpcoming.backgroundColor = .red
+        btnWeekend.backgroundColor = .clear
          self.tableView.reloadData()
     }
     
@@ -132,11 +141,15 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HPPartyCell") as! HPPartyCell
         cell.selectionStyle = .none
+        cell.detailView .layer.borderWidth = 0.5
+        cell.detailView.layer.borderColor = UIColor.lightGray.cgColor
+        
       if (self.ListViewtype == "Today") {
         
          let getData = self.partList[indexPath.row]
          cell.lblTitle.text = getData.partyTitle
-         cell.lblDate.text = (getData.start_time ?? "") + " " + (getData.partyAddress ?? "")
+         cell.lbAdd.text =  (getData.partyAddress ?? "")
+         cell.lblDate.text = (getData.start_time ?? "")
         if getData.tickets_sold == ""{
             cell.lblAttendingCount.text = ("0") + " " + "attending"
         }else{

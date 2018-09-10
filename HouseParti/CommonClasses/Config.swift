@@ -12,7 +12,7 @@ let ThemeGreyColor = UIColor(red: 0.97/255.0, green: 0.27/255.0, blue: 0.36/255.
 
 class Config: NSObject {
     class func customizeAppearance() {
-        UINavigationBar.appearance().barTintColor = ThemePinkColor
+        UINavigationBar.appearance().barTintColor = .red
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().isTranslucent = false
         let attributes = [NSAttributedStringKey.font: UIFont(name: "WhitneyHTF-Bold", size: 25)!]

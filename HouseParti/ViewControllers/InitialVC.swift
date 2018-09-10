@@ -17,6 +17,8 @@ class InitialVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -29,6 +31,9 @@ class InitialVC: UIViewController {
     }
     
     @IBAction func actnBtnLogin(_ sender: Any) {
+      //  self.perform(#selector(self.showTabBar), with: nil, afterDelay: 0.5)
+
+
         if self.txtFldEmail?.text == "" || self.txtFldPassword?.text == "" {
             showAlertWithMesssage(message: NSLocalizedString("Please fill all required informations.", comment: ""), VC: self)
             return
@@ -64,6 +69,7 @@ class InitialVC: UIViewController {
                 }
             })
         }
+
     }
     
 }

@@ -15,11 +15,8 @@ class InfoVC:NewPostBaseVC, UIPageViewControllerDataSource, UIPageViewController
     @IBOutlet weak var loactionAction: UIButton!
     @IBOutlet weak var viewDetail: UIView!
     @IBOutlet weak var btnTab5: UIButton!
-    @IBOutlet weak var btnTab4: UIButton!
-    @IBOutlet weak var btnTab3: UIButton!
     @IBOutlet weak var btnTab2: UIButton!
     @IBOutlet weak var btnTab1: UIButton!
-    
     @IBOutlet weak var viewLine: UIView!
     @IBOutlet weak var viewLeftConstraint: NSLayoutConstraint!
     private var pageController: UIPageViewController!
@@ -27,7 +24,6 @@ class InfoVC:NewPostBaseVC, UIPageViewControllerDataSource, UIPageViewController
     private var currentPage: Int!
     var tab1VC:Tab1VC! = nil
     var tab2VC:Tab2VC! = nil
-    var tab3VC:Tab3VC! = nil
     var tab5VC:Tab5VC! = nil
     var getParamter :[String:Any] = [:]
     
@@ -45,9 +41,7 @@ class InfoVC:NewPostBaseVC, UIPageViewControllerDataSource, UIPageViewController
         // Dispose of any resources that can be recreated.
     }
     //MARK: - Custom Methods
-    
     private func selectedButton(btn: UIButton) {
-        
         btn.setTitleColor(UIColor.black, for: .normal)
         viewLeftConstraint.constant = btn.frame.origin.x
         UIView.animate(withDuration: 0.3) {
@@ -67,15 +61,12 @@ class InfoVC:NewPostBaseVC, UIPageViewControllerDataSource, UIPageViewController
     @IBAction func nextAction(_ sender: Any) {
         let cont = self.storyboard?.instantiateViewController(withIdentifier: "TimeVC")as! TimeVC
         let getStr = self.json(from: tab2VC.selectedCells)
-
         self.getParamter.updateValue(tab1VC.namePartyTxt.text ?? "", forKey: "title")
         self.getParamter.updateValue(tab1VC.txtView.text ?? "", forKey: "description")
         self.getParamter.updateValue(getStr ?? "", forKey: "music")
-        self.getParamter.updateValue(tab3VC.switchGetValue ?? "", forKey: "music")
-        self.getParamter.updateValue(tab3VC.switchGetValue ?? "", forKey: "food_drink")
         self.getParamter.updateValue(tab5VC.ticketPriceTxt.text ?? "", forKey: "ticket_price")
-        
         cont.infoParameter = self.getParamter
+
         self.navigationController?.pushViewController(cont, animated: true)
     }
     @IBAction func detailAction(_ sender: Any) {
@@ -91,7 +82,7 @@ class InfoVC:NewPostBaseVC, UIPageViewControllerDataSource, UIPageViewController
     @IBAction func btnOptionClicked(_ btn: UIButton) {
         pageController.setViewControllers([arrVC[btn.tag-1]], direction: UIPageViewControllerNavigationDirection.reverse, animated: false, completion: {(Bool) -> Void in
         })
-        
+
         resetTabBarForTag(tag: btn.tag-1)
     }
     //MARK: - CreatePagination
@@ -112,10 +103,10 @@ class InfoVC:NewPostBaseVC, UIPageViewControllerDataSource, UIPageViewController
         tab1VC = homeStoryboard.instantiateViewController(withIdentifier: "Tab1VC") as! Tab1VC
         tab1VC.infoDict = self.getParamter
         tab2VC = homeStoryboard.instantiateViewController(withIdentifier: "Tab2VC") as! Tab2VC
-        
-        tab3VC = homeStoryboard.instantiateViewController(withIdentifier: "Tab3VC") as! Tab3VC
+
+        // tab3VC = homeStoryboard.instantiateViewController(withIdentifier: "Tab3VC") as! Tab3VC
         tab5VC = homeStoryboard.instantiateViewController(withIdentifier: "Tab5VC") as! Tab5VC
-        arrVC = [tab1VC, tab2VC, tab3VC,tab5VC]
+        arrVC = [tab1VC,tab2VC,tab5VC]
         pageController.setViewControllers([tab1VC], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
         
         self.addChildViewController(pageController)
@@ -173,38 +164,25 @@ class InfoVC:NewPostBaseVC, UIPageViewControllerDataSource, UIPageViewController
         var sender: UIButton!
         if(tag == 0) {
             sender = btnTab1
-             btnTab1.setImage(#imageLiteral(resourceName: "info_icon"), for: .normal)
-             btnTab2.setImage(#imageLiteral(resourceName: "music_note_icon"), for: .normal)
-             btnTab3.setImage(#imageLiteral(resourceName: "ic_glass"), for: .normal)
-             btnTab5.setImage(#imageLiteral(resourceName: "dollar_icon"), for: .normal)
+             btnTab1.setImage(#imageLiteral(resourceName: "info_icon-1"), for: .normal)
+             btnTab2.setImage(#imageLiteral(resourceName: "ic_music"), for: .normal)
+             btnTab5.setImage(#imageLiteral(resourceName: "dollar_icon_black"), for: .normal)
              self.btnNext.isEnabled = false
              self.btnNext.alpha = 0.6
         }
         else if(tag == 1) {
             sender = btnTab2
-            btnTab2.setImage(#imageLiteral(resourceName: "ic_music"), for: .normal)
-            btnTab1.setImage(#imageLiteral(resourceName: "ic_infoGray"), for: .normal)
-            btnTab3.setImage(#imageLiteral(resourceName: "ic_glass"), for: .normal)
-            btnTab5.setImage(#imageLiteral(resourceName: "dollar_icon"), for: .normal)
+            btnTab2.setImage(#imageLiteral(resourceName: "music-icon"), for: .normal)
+            btnTab1.setImage(#imageLiteral(resourceName: "info_icon"), for: .normal)
+            btnTab5.setImage(#imageLiteral(resourceName: "dollar_icon_black"), for: .normal)
             self.btnNext.isEnabled = false
             self.btnNext.alpha = 0.6
         }
         else if(tag == 2) {
-            sender = btnTab3
-            btnTab3.setImage(#imageLiteral(resourceName: "glass-folk-icon-black"), for: .normal)
-            btnTab1.setImage(#imageLiteral(resourceName: "ic_infoGray"), for: .normal)
-            btnTab2.setImage(#imageLiteral(resourceName: "music_note_icon"), for: .normal)
-            btnTab5.setImage(#imageLiteral(resourceName: "dollar_icon"), for: .normal)
-            self.btnNext.isEnabled = false
-            self.btnNext.alpha = 0.6
-        }
-       
-        else if(tag == 3) {
             sender = btnTab5
-            btnTab5.setImage(#imageLiteral(resourceName: "dollar_icon_black"), for: .normal)
-            btnTab1.setImage(#imageLiteral(resourceName: "ic_infoGray"), for: .normal)
-            btnTab2.setImage(#imageLiteral(resourceName: "music_note_icon"), for: .normal)
-            btnTab3.setImage(#imageLiteral(resourceName: "ic_glass"), for: .normal)
+            btnTab5.setImage(#imageLiteral(resourceName: "doller_icon"), for: .normal)
+            btnTab1.setImage(#imageLiteral(resourceName: "info_icon"), for: .normal)
+            btnTab2.setImage(#imageLiteral(resourceName: "ic_music"), for: .normal)
             self.btnNext.isEnabled = true
             self.btnNext.alpha = 1.0
     
@@ -212,7 +190,6 @@ class InfoVC:NewPostBaseVC, UIPageViewControllerDataSource, UIPageViewController
         currentPage = tag
         unSelectedButton(btn: btnTab1)
         unSelectedButton(btn: btnTab2)
-        unSelectedButton(btn: btnTab3)
         unSelectedButton(btn: btnTab5)
         selectedButton(btn: sender)
     }

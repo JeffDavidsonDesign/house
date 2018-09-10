@@ -16,7 +16,9 @@ class HPPartyCell: UITableViewCell {
     @IBOutlet weak var logoIcon: UIImageView!
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
-    
+    @IBOutlet weak var lbAdd: UILabel!
+
+    @IBOutlet weak var profileImg: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

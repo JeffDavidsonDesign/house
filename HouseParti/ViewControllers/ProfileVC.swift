@@ -19,7 +19,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var btnPartiesHosting: UIButton!
     @IBOutlet weak var leftViewConstraint: NSLayoutConstraint!
     var imagePickerController = UIImagePickerController()
-    
+    @IBOutlet weak var detailView: UIView!
     var tableListType = "Hosting"
     var statusValue : GetStatus?
     var partyHost:[HouseMusic] = []
@@ -31,32 +31,38 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let imageView = UIImageView(image:#imageLiteral(resourceName: "navlogo"))
-        self.navigationItem.titleView = imageView
-       // self.navigationItem.title = "HouseParti"
+        self.navigationItem.title = "HouseParti"
         self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         self.profileImageView.layer.borderWidth = 1.0
         self.profileImageView.layer.borderColor = UIColor.black.cgColor
         getMusicMethod()
+        self.detailView.layer.borderWidth = 0.5
+        self.detailView.layer.borderColor = UIColor.red.cgColor
+        profileImageView.layer.borderWidth = 1.0
+        profileImageView.layer.borderColor = UIColor.white.cgColor
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     @IBAction func actnBtnPartiesAttending(_ sender: UIButton) {
-        btnPartiesAttending .setTitleColor(UIColor.lightGray, for: .normal)
+        btnPartiesAttending .setTitleColor(UIColor.white, for: .normal)
         btnPartiesHosting .setTitleColor(UIColor.black, for: .normal)
-        leftViewConstraint.constant = sender.frame.origin.x+24
+       // leftViewConstraint.constant = sender.frame.origin.x+24
         self.tableListType = "Attending"
         self.tableView.reloadData()
+        btnPartiesAttending.backgroundColor = .red
+        btnPartiesHosting.backgroundColor = .clear
     }
-    
     @IBAction func actnBtnPartiesHosting(_ sender: UIButton) {
-        btnPartiesHosting .setTitleColor(UIColor.lightGray, for: .normal)
+        btnPartiesHosting .setTitleColor(UIColor.white, for: .normal)
         btnPartiesAttending .setTitleColor(UIColor.black, for: .normal)
-        leftViewConstraint.constant = sender.frame.origin.x+24
+        //leftViewConstraint.constant = sender.frame.origin.x+24
         self.tableListType = "Hosting"
         self.tableView.reloadData()
+        btnPartiesAttending.backgroundColor = .clear
+        btnPartiesHosting.backgroundColor = .red
     }
     @IBAction func selectPhoto(_ sender: Any) {
         let alert = UIAlertController(title: "Select Option", message: "", preferredStyle: .actionSheet)
@@ -129,11 +135,15 @@ extension ProfileVC:UITableViewDelegate,UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HPPartyCell") as! HPPartyCell
         cell.selectionStyle = .none
+        cell.detailView .layer.borderWidth = 0.5
+        cell.detailView.layer.borderColor = UIColor.lightGray.cgColor
+        
         if self.tableListType == "Hosting"
         {
             let getData = self.partyHost[indexPath.row]
             cell.lblTitle.text = getData.partyTitle
-            cell.lblDate.text = (getData.start_time ?? "") + " " + (getData.partyAddress ?? "")
+            cell.lbAdd.text =  (getData.partyAddress ?? "")
+            cell.lblDate.text = (getData.start_time ?? "")
             cell.lblPrice.text = "Free"
             if getData.tickets_sold == ""{
                  cell.lblAttendingCount.text = ("0") + " " + "attending"

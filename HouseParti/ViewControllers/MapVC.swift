@@ -56,9 +56,7 @@ protocol  GetMapLocationProtocol {
         navigationItem.title = "Location"
         
     }
-    
-   
-    
+
     func InterfaceDesign()  {
         searchCompleter.delegate = self as MKLocalSearchCompleterDelegate
 
@@ -68,7 +66,6 @@ protocol  GetMapLocationProtocol {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // create a new cell if needed or reuse an old one

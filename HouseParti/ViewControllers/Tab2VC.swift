@@ -11,7 +11,6 @@ import UIKit
 class Tab2VC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var musicArr = ["Indie","Hip-Hop","Jazz","Pop","Country","Salsa","Bachata"]
     var selectedCells:[Int] = []
     var statusValue : GetStatus?
     var musicData:[HouseMusic] = []
@@ -43,8 +42,7 @@ class Tab2VC: UIViewController {
             return
         }
     })
-    }
-
+  }
 }
 //Mark:-UITableView Delegate and Datasouce
 extension Tab2VC:UITableViewDelegate,UITableViewDataSource{
@@ -58,10 +56,9 @@ extension Tab2VC:UITableViewDelegate,UITableViewDataSource{
         let headerView = UIView()
         let menuHeaderLabel = UILabel(frame: CGRect(x: 22, y: 10, width: tableView.frame.size.width, height: 30))
         menuHeaderLabel.font = UIFont(name:"WhitneyHTF-SemiBold", size: 15.0)
-        
         menuHeaderLabel.text = "MUSIC"
-        menuHeaderLabel.textColor  = UIColor(red: 0.26, green: 0.26, blue: 0.27, alpha: 1)
-        headerView.backgroundColor = UIColor(red: 0.89, green: 0.91, blue: 0.96, alpha: 1)
+        menuHeaderLabel.textColor  = .white
+        headerView.backgroundColor = .red
         headerView.addSubview(menuHeaderLabel)
         
         return headerView
@@ -79,9 +76,10 @@ extension Tab2VC:UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "HPMusicCell") as! HPMusicCell
         let getData = self.musicData[indexPath.row]
         cell.musicLbl.text = getData.musicName
-//        cell.accessoryType = self.selectedCells.contains(indexPath.row) ? .checkmark : .none
-        
-        if cell.isSelected
+//      cell.accessoryType = self.selectedCells.contains(indexPath.row) ? .checkmark : .none
+        let defaults = UserDefaults.standard
+        let musicCheck = defaults.value(forKey: "muic")
+        if cell.isSelected || (musicCheck != nil)
         {
             cell.isSelected = false
             if cell.accessoryType == UITableViewCellAccessoryType.none
@@ -107,12 +105,14 @@ extension Tab2VC:UITableViewDelegate,UITableViewDataSource{
                 cell!.accessoryType = UITableViewCellAccessoryType.checkmark
                 self.selectedCells.append(getId!)
                 print(self.selectedCells)
+                UserDefaults.standard.set(self.selectedCells, forKey: "music")
             }
             else
             {
                 cell!.accessoryType = UITableViewCellAccessoryType.none
                 self.selectedCells.remove(at: self.selectedCells.index(of:getId!)!)
                 print(self.selectedCells)
+               UserDefaults.standard.removeObject(forKey: "music")
 
             }
         }

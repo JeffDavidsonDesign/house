@@ -27,6 +27,7 @@ class LoginVC: AutenticationVC, UITextFieldDelegate {
     
         if self.txtFieldEmail?.text == "" || self.txtFieldPassword?.text == "" {
             showAlertWithMesssage(message: NSLocalizedString("Please fill all required informations.", comment: ""), VC: self)
+            
             return
         }
         if (txtFieldEmail.text?.isValidEmail) == false {
@@ -60,8 +61,8 @@ class LoginVC: AutenticationVC, UITextFieldDelegate {
                 }
             })
         }
- 
-   //     self.perform(#selector(self.showTabBar), with: nil, afterDelay: 0.5)
+        
+   // self.perform(#selector(self.showTabBar), with: nil, afterDelay: 0.5)
 
     }
     //Pragma Mark - TextField Delegate -
